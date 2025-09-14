@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="documentation-interaction-diagram">Documentation Interaction Diagram</h1>
+<p>Assignment, Interaction Diagram (interact with objects)</p>
+<p>This assignment is based on generating interaction diagrams for the system events.
+Create one interaction diagram each for:
+selectObject(theGameObjectName)
+selectInteraction(theInteractionType)
+setInteractionOptions(theOptions)
+startInteraction()</p>
+<p>We who have worked on this assignment are:
+Gabriel Höglund, Malte Eriksson, Arvid Lindqvist och Seyed Mostafa Mohseni.
+As a tool we have used PlantUML diagrams.
+Our diagram represents the sequence of interactions between different components in a system when a game object is selected.
+PlantUML is a tool that allows us to create UML diagrams from simple text descriptions.</p>
+<h2 id="small-note">Small Note</h2>
+<p>We assume all game element available in the scene has already been created. Overall we have tried thinking along high cohesion and low coupling and balancing them. Also we choose not to write out the use of Polymorfism, but it
+is clearly used for specifying behaviour of for example different GameObjects.</p>
+<h3 id="selectobjectthegameobjectname">SelectObject(theGameObjectName)</h3>
+<p>The first sequence diagram:
+selectObject(theGameObjectName)
+The classes in this sequence diagram are:</p>
+<ul>
+<li>:Game</li>
+<li>:Scene</li>
+<li>:ElementHandler</li>
+<li>:GameObject</li>
+</ul>
+<p>This diagram effectively illustrates the flow of method calls and participant activation/deactivation during the process of selecting a game object and retrieving its interaction options.</p>
+<p><img src="file:///home/gabz/softwareDesign/interactionDiagram/.images/selectObject.png" alt="SelectObject"></p>
+<p>Our idea and interpretaion of the given use case SelectObject, starts with a call to the Game by the controller pattern.
+Game in turn calls same function to the current active scene as it is the information expert on all available game elements, this including game object.</p>
+<p>From scene it deligates the task of retrieving the selectedObject to the ElementHandler which handles the storage of GameElement by a getFunction and scene stores it in a variable. This is approach uses the indirection pattern and pure fabrication as it is not part of the domain model.</p>
+<p>On the retrieved object we ask to get a list of interaction types belonging to the GameObject through the creator pattern and therefore is the information expert on its available interaction types.</p>
+<p>This list is returned then to the user inferface by means we just assume gets dealt with (by our lovely secretary which we know from the program description).</p>
+<h3 id="selectinteractiontheinteractiontype">SelectInteraction(theInteractionType)</h3>
+<p>The second sequence diagram:
+selectInteraction(theInteractionType)
+The classes in this sequence diagram are:</p>
+<ul>
+<li>:Game</li>
+<li>:Scene</li>
+<li>:GameObject</li>
+<li>:InteractionType</li>
+</ul>
+<p>This diagram effectively illustrates the flow of method calls and participant activation/deactivation during the process of selecting an interaction type and retrieving its options.</p>
+<p><img src="file:///home/gabz/softwareDesign/interactionDiagram/.images/selectInteraction.png" alt="SelectObject"></p>
+<p>Agian the function call selectInteraction() is directed to the Game as it is the controller for this use case since it is the first interaction with the UI.</p>
+<p>From the Game same as before, we ask the current active scene to get the InteractionType from the previously selectedGameObject because as we said before is the information expert.</p>
+<p>Then, on the selectedInteractionType we request to get the specific options it has, because it is the information expert on its available interaction options. This list is then returned to the UI.</p>
+<h3 id="setinteractionoptiontheoption">SetInteractionOption(theOption)</h3>
+<p>The third sequence diagram:
+setInteractionOptions(theOptions)
+The classes in this sequence diagram are:</p>
+<ul>
+<li>:Game</li>
+<li>:Scene</li>
+<li>:InteractionType</li>
+</ul>
+<p>This diagram effectively illustrates the flow of method calls and participant activation/deactivation during the process of setting interaction options.</p>
+<p><img src="file:///home/gabz/softwareDesign/interactionDiagram/.images/setInteractionOptions.png" alt="SelectObject"></p>
+<p>Once more, to everyones surprise we get a call to Game following the controller pattern.</p>
+<p>From it deligate the task to the current active Scene as it is the information expert.</p>
+<p>The scene has the previosly selected interaction type and is therefore qualified to pass the selected option to the interactionType.</p>
+<h3 id="startinteraction">StartInteraction</h3>
+<p>The fourth sequence diagram:
+startInteraction()
+The classes in this sequence diagram are:</p>
+<ul>
+<li>:Scene</li>
+<li>:EventHandler</li>
+<li>:Event</li>
+<li>:StateHandler</li>
+</ul>
+<p>This diagram effectively illustrates the flow of method calls and participant activation/deactivation during the process of starting an interaction and managing
+its results.</p>
+<p><img src="file:///home/gabz/softwareDesign/interactionDiagram/.images/startInteraction.png" alt="SelectObject"></p>
+<p>In this event, as it does not take calls from the UI but happens internally from some unknown internal source,
+we make the controller for the usecase to scene, since we think it holds the most information in order to begin executing the interaction (this because it has the selectedInteraction).</p>
+<p>We decided that for an interaction to happen there needs to be a event. Therfore we
+decided Scene should deligate the task to an EventHandler by indirection also by pure fabrication since its created by our beautiful imagination.</p>
+<p>The event handler is tasked with handling events and creating them following the creator pattern.</p>
+<p>It initiates the event and during the event it may update the state of things within the game, by interacting with a magical StateHandler who is information expert on these types of assignments using indirection.</p>
+
+</body>
+</html>

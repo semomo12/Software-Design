@@ -1,0 +1,49 @@
+
+@startuml
+
+package UI {
+}
+
+package System {
+}
+
+package GameSystems {
+    top to bottom direction
+
+    package Enviorments
+    package Interfaces {
+    }
+
+    package Plot {
+    }
+
+    package Entities {
+        package GameObjects {
+        }
+        package Characters {
+        }
+    }
+    package Events 
+    
+
+    package Interaction 
+    
+}
+
+package Utilities {
+}
+
+package Storage {
+}
+
+UI - System
+System -- GameSystems
+GameSystems -- Storage
+GameSystems -- Utilities
+Enviorments -- Interfaces
+Interfaces -- Entities
+Entities -- Interaction
+
+
+
+@enduml

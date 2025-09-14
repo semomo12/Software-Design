@@ -1,0 +1,124 @@
+@startuml
+
+
+class Game {
+    -usecase
+    +SetUseCase()
+    +StartUseCase()
+}
+
+class UseCaseStrategy {
+
+}
+
+class SelectObjectUseCase {
+
+}
+
+class SelectInteractionTypeUseCase{
+
+}
+
+class SetInteractionUseCase {
+
+}
+
+class startInteractionUseCase {
+
+}
+
+class AbortInteractionUseCase {
+
+}
+
+class Scene {
+
+}
+
+class EventManager <<Singleton>> {
+    -EventManager()
+    +getEventManger()
+    +createEvent(EventCondition, Event)
+    +listAffectedEvents(EventCondition)
+    +triggerEvents(EventCondition)
+    +clearEvent(EventCondition)
+    +clearEvent(Event)
+}
+
+class GameObject {
+    -InteractionStrategy
+    +setInteractionStrategy()
+    
+}
+
+class GameObjectRepository {
+
+}
+
+class GameElement {
+
+}
+
+class InteractionStrategy {
+
+}
+
+class LookInteractionStrategy {
+
+}
+
+class OpenInteractionStrategy {
+
+}
+
+class MoveInteractionStrategy {
+
+}
+
+class TurnOnInteractionStrategy {
+
+}
+
+class TurnOffInteractionStrategy {
+
+}
+
+class TasteInteractionStrategy {
+
+}
+
+class PickupInteractionStrategy {
+
+}
+
+class DropInteractionStrategy {
+
+}
+
+Game"1" -- "1" UseCaseStrategy
+GameElement <|-- GameObject
+GameElement <|-- Scene
+
+GameElement - EventManager
+GameObject "1" ---- "1" InteractionStrategy
+GameObjectRepository "1" - "*" GameObject
+
+UseCaseStrategy - Scene
+UseCaseStrategy - GameObjectRepository
+UseCaseStrategy <|-- SelectObjectUseCase
+UseCaseStrategy <|-- SelectInteractionTypeUseCase
+UseCaseStrategy <|-- SetInteractionUseCase
+UseCaseStrategy <|-- startInteractionUseCase
+UseCaseStrategy <|-- AbortInteractionUseCase
+
+InteractionStrategy <|-- LookInteractionStrategy
+InteractionStrategy <|-- OpenInteractionStrategy
+InteractionStrategy <|--- MoveInteractionStrategy
+InteractionStrategy <|--- TurnOffInteractionStrategy
+InteractionStrategy <|--- TurnOnInteractionStrategy
+InteractionStrategy <|--- TasteInteractionStrategy
+InteractionStrategy <|-- PickupInteractionStrategy
+InteractionStrategy <|-- DropInteractionStrategy
+
+
+@enduml

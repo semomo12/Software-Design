@@ -1,0 +1,61 @@
+# VS metadata
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build/obj
+[Bb]in/
+[Oo]bj/
+ipch/
+*.aps
+*.obj
+*.idb
+*.pdb
+*.pch
+*.ipch
+*.ilk
+*.iobj
+*.ipdb
+*.tlog/
+*.lastbuildstate
+*.vsidx
+
+# VC++ specific
+*.log
+*.opendb
+*.vcxproj.user
+*.vcxproj.Filters.user
+
+# MSBuild intermediates
+*.cache
+*.db
+*.metaproj
+*.metaproj.tmp
+
+# Test/coverage/temp
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Packages
+packages/
+*.nupkg
+*.snupkg
+
+# Other
+*.tmp
+*.bak
+*.swp
+*.sdf
+*.opensdf
+
+# Your project’s Debug/Release trees
+x64/Debug/
+x64/Release/
+Software/x64/Debug/
+Software/Software/x64/Debug/
+Software/Software_lib/x64/Debug/
+Software/Software_test/x64/Debug/

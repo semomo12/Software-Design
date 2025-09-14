@@ -1,0 +1,23 @@
+@startuml
+participant ":Game" as Game
+participant "current:Scene" as Scene
+participant "selectedObject:GameObject" as Object
+
+
+[->Game : selectInteractionType(theInteractionType)
+activate Game
+Game -> Scene : selectInteractionType(theInteractionType)
+activate Scene
+Scene -> Object : selectedInteraction = getInteractionType(theInteractionType)
+activate Object
+deactivate Object
+participant "selectedInteraction:InteractionType" as Interaction
+Scene -> Interaction : getInteractionOptions()
+activate Interaction
+deactivate Interaction
+
+Scene --> Game : list of interaction options
+deactivate Scene
+[<-- Game : Request for specific options
+deactivate Game
+@enduml

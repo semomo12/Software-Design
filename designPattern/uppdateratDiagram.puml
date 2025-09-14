@@ -1,0 +1,124 @@
+@startuml
+
+
+class Game <<context>>{
+    -usecaseStratergy
+    +SetUseCase()
+    +StartUseCase()
+}
+
+class UseCaseStrategy <<interface>>{
+  +preformUseCase()
+}
+
+class SelectObjectUseCase <<stratergy>>{
+
+}
+
+class SelectInteractionTypeUseCase <<stratergy>>{
+
+}
+
+class SetInteractionUseCase <<stratergy>>{
+
+}
+
+class startInteractionUseCase <<stratergy>>{
+
+}
+
+class AbortInteractionUseCase <<stratergy>>{
+
+}
+
+class Scene {
+
+}
+
+class EventManager <<Singleton>> {
+    -EventManager()
+    +getEventManger()
+    +createEvent(EventCondition, Event)
+    +listAffectedEvents(EventCondition)
+    +triggerEvents(EventCondition)
+    +clearEvent(EventCondition)
+    +clearEvent(Event)
+}
+
+class GameObject <<context>>{
+    -InteractionStrategy
+    +setInteractionStrategy()
+    
+}
+
+class GameObjectRepository {
+
+}
+
+class GameElement {
+
+}
+
+class InteractionStrategy <<interface>>{
+  +preformInteraction()
+}
+
+class LookInteractionStrategy <<stratergy>>{
+
+}
+
+class OpenInteractionStrategy <<stratergy>>{
+
+}
+
+class MoveInteractionStrategy <<stratergy>>{
+
+}
+
+class TurnOnInteractionStrategy <<stratergy>>{
+
+}
+
+class TurnOffInteractionStrategy <<stratergy>>{
+
+}
+
+class TasteInteractionStrategy <<stratergy>>{
+
+}
+
+class PickupInteractionStrategy <<stratergy>>{
+
+}
+
+class DropInteractionStrategy <<stratergy>>{
+
+}
+
+Game"1" -- "1" UseCaseStrategy
+GameElement <|-- GameObject
+GameElement <|-- Scene
+
+GameElement - EventManager
+GameObject "1" ---- "1" InteractionStrategy
+GameObjectRepository "1" - "*" GameObject
+
+UseCaseStrategy - Scene
+UseCaseStrategy - GameObjectRepository
+UseCaseStrategy <|-- SelectObjectUseCase
+UseCaseStrategy <|-- SelectInteractionTypeUseCase
+UseCaseStrategy <|-- SetInteractionUseCase
+UseCaseStrategy <|-- startInteractionUseCase
+UseCaseStrategy <|-- AbortInteractionUseCase
+
+InteractionStrategy <|-- LookInteractionStrategy
+InteractionStrategy <|-- OpenInteractionStrategy
+InteractionStrategy <|--- MoveInteractionStrategy
+InteractionStrategy <|--- TurnOffInteractionStrategy
+InteractionStrategy <|--- TurnOnInteractionStrategy
+InteractionStrategy <|--- TasteInteractionStrategy
+InteractionStrategy <|-- PickupInteractionStrategy
+InteractionStrategy <|-- DropInteractionStrategy
+
+
+@enduml

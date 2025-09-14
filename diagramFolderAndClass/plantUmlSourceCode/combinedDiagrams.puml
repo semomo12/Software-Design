@@ -1,0 +1,86 @@
+@startuml
+
+
+package System {
+    class Game {
+        -currentlyActive
+        +initiateConversation(theCharacter)
+    }
+}
+
+package UI {
+}
+
+package Storage {
+    class PhoneBook {
+        +getContactMethod(theCharacter)
+    }
+    class CharacterRepository {
+        getCharacter(theCharacter)
+    }
+}
+
+package GameSystems {
+    package Enviorment {
+     abstract class Scene {
+            +isAvailable(theCharacter)
+        }
+    }
+    package Entities {
+        package Characters {
+            abstract class Character {
+                -parsedQuery
+                +getInitialgreeting()
+                +query(safeQuery)
+            }
+        }
+        package GameObjects {
+        }
+    }
+    package Interfaces {
+      
+        class CharacterInterface {
+            -currentlyActive
+            -response
+            -safeQuery
+            +activate()
+            +sendQuery(theQuery)
+        }
+    }
+    package Interaction {
+        class InteractionEngine {
+            +parseQuery(theQuery)
+            +formatResponse(theResponse, nextConversationOptions)
+        }
+    }
+    package Plot {
+        class PlotEngine {
+            +getPlotState()
+        }
+    }
+    package Events {
+    }
+
+}
+
+package Utilities {
+    class InputSanitiser {
+        +sanitiseInput(theQuery)
+    }
+}
+
+
+
+UI -- System
+GameSystems - System
+
+Game "1" --- "1..n" Scene
+Game ---- PhoneBook
+Game --- CharacterInterface
+CharacterInterface -- InputSanitiser
+CharacterInterface ---CharacterRepository
+Character "*" -- "1" CharacterRepository
+Character --- PlotEngine
+Character --- InteractionEngine
+
+@enduml

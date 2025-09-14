@@ -1,0 +1,53 @@
+@startuml
+class Game {
+    -currentlyActive
+    +initiateConversation(theCharacter)
+}
+abstract class Scene {
+    +isAvailable(theCharacter)
+}
+
+class PhoneBook{
+    +getContactMethod(theCharacter)
+}
+
+abstract class Character {
+    -parsedQuery
+    +getInitialgreeting()
+    +query(safeQuery)
+}
+class CharacterInterface {
+    -currentlyActive
+    -response
+    -safeQuery
+    +activate()
+    +sendQuery(theQuery)
+}
+class CharacterRepository {
+    getCharacter(theCharacter)
+}
+class InputSanitiser {
+    +sanitiseInput(theQuery)
+}
+class InteractionEngine {
+    +parseQuery(theQuery)
+    +formatResponse(theResponse, nextConversationOptions)
+}
+class PlotEngine {
+    +getPlotState()
+}
+
+
+Game "1" -- "1..n" Scene
+Game -- PhoneBook
+Game -- CharacterInterface
+CharacterInterface -- CharacterRepository
+CharacterRepository "1" -- "*" Character
+CharacterInterface -- InputSanitiser
+Character -- InteractionEngine
+Character -- PlotEngine
+
+
+
+
+@enduml

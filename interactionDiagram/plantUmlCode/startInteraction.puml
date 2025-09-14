@@ -1,0 +1,28 @@
+@startuml
+participant "current:Scene" as Scene
+participant ":EventHandler" as EventH
+
+[-> Scene : startInteraction()
+activate Scene
+Scene -> EventH: initEvent(selectedInteraction)
+activate EventH
+create ":Event" as Event
+EventH -> Event : create()
+EventH -> Event : executeEvent(currentEvent)
+activate Event
+participant ":StateHandler" as StateH
+Event -> StateH : updateStates()
+activate StateH
+deactivate StateH
+Event --> EventH: result of event
+deactivate Event
+EventH --> Scene : result of event
+deactivate EventH
+alt result of event
+
+
+
+[<--Scene : result of interaction
+deactivate Scene
+
+@enduml

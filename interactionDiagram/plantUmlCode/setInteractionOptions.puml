@@ -1,0 +1,17 @@
+@startuml
+
+participant ":Game" as Game 
+participant "currentScene:Scene" as Scene
+participant "selected:InteractionType" as InteractionType
+
+[-> Game: setInteractionOptions(theOptions)
+activate Game
+Game -> Scene : setInteractionOptions(theOptions)
+activate Scene 
+Scene -> InteractionType : setInteraction(theOptions)
+activate InteractionType
+deactivate InteractionType
+deactivate Scene
+[<-- Game : Option OK! 
+deactivate Game
+@enduml

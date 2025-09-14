@@ -1,0 +1,26 @@
+@startuml
+
+
+participant ":Game" as Game
+participant "Current:Scene" as Scene
+participant ":ElementHandler" as ElementH
+participant "selectedObject:GameObject" as Object
+
+[-> Game : selectGameObject(theGameObjectName) 
+activate Game
+Game -> Scene : selectGameObject(theGameObjectName)
+activate Scene
+Scene -> ElementH : selectedObject = getGameObject(theGameObjectName)
+activate ElementH
+deactivate ElementH
+Scene -> Object : getListOfInteraction()
+activate Object
+deactivate Object
+Scene --> Game : list of interaction options
+deactivate Scene
+[<--Game : list of interaction types available
+deactivate Game
+
+
+
+@enduml
